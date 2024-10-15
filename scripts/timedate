@@ -1,0 +1,33 @@
+#!/bin/bash  
+    
+getTime() { 
+  date "+%H:%M"
+}   
+   
+getDate() {
+  date "+%d %b %Y"
+}   
+  
+getDay() {
+  date "+%A"
+}   
+  
+getCalTime() {
+  date "+%r"
+}   
+  
+if [[ $1 == "time" ]]; then
+  getTime 
+fi 
+ 
+if [[ $1 == "date" ]]; then
+  getDate  
+fi
+ 
+if [[ $1 == "day" ]]; then
+  getDay
+fi
+
+if [[ $1 == "calTime" ]]; then
+  getCalTime
+fi

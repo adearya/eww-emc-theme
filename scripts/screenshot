@@ -1,0 +1,49 @@
+#!/bin/bash
+
+setTriggerRofi() {
+  bash ~/SourceCode/rofi-emc-theme/scripts/screenshot.sh setting
+}
+
+setTakeShot() {
+  bash ~/SourceCode/rofi-emc-theme/scripts/screenshot.sh toggle
+}
+
+getStatus () {
+  option=$(cat $HOME/.cache/screenshot/selection)
+  if [[ $option == "" ]]; then
+    echo off
+  else 
+    echo on
+  fi
+}
+
+getIcon() {
+  local option=$(cat $HOME/.cache/screenshot/selection)
+  if [[ $option == "Fullscreen and save" ]]; then
+    echo ""
+  elif [[ $option == "Crop and clip" ]]; then
+    echo "󱉧"
+  elif [[ $option == "Fullscreen and clip" ]]; then
+    echo ""
+  elif [[ $option == "Crop and save" ]]; then
+    echo "󰆞"
+  elif [[ $option == "Fullscreen Timer" ]]; then
+    echo "󱎫"
+  fi
+}
+
+if [[ $1 == "icon" ]]; then
+  getIcon
+fi
+
+if [[ $1 == "status" ]]; then
+  getStatus
+fi
+
+if [[ $1 == "set" ]]; then
+  setTriggerRofi
+fi
+
+if [[ $1 == "take" ]]; then
+  setTakeShot
+fi

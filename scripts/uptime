@@ -1,0 +1,12 @@
+#!/bin/bash
+
+getUptime() {
+  local hostname=$(cat /etc/hostname)
+  local uptime=$(uptime -p)
+
+  echo "$hostname | $uptime"
+}
+
+if [[ $1 == "uptime"  ]]; then
+  getUptime
+fi

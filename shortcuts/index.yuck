@@ -1,0 +1,391 @@
+;; Template Toggle Block
+(defwidget toggleBlock [active icon label onclickToggle onclickSet]
+
+	;; Vertical Block
+	(box 
+		:class "toggleBlock-box" 
+		:orientation "v" 
+		:space-evenly false
+		
+		;; Toggle Button
+		(box 
+			:class "toggleBlockIcon-box" 
+			:orientation "h" 
+			:space-evenly false 
+			:valign "start"
+			
+			(button :class "icon-button ${active ? 'active' : ''}" :space-evenly false :halign "start" :onclick "${onclickToggle}" (label :text "${icon}"))
+			(box :class "separator-box :space-evenly false" :halign "center" (label :text ""))
+			(button :class "setting-button ${active ? 'active' : ''}" :space-evenly false :halign "end" :onclick "${onclickSet}" (label :text "󰅂"))
+		) 
+
+		;; Toggle Label
+		(box 
+			:class "toggleBlockLabel-box" 
+			:orientation "h" 
+			:valign "center" 
+
+			(label :halign "center" :text "${label}")
+		) 
+	)
+)
+
+;; Shortcuts Block
+(defwidget shortcutsBlock []
+
+	;; Event
+	(eventbox	
+    :onhoverlost "${eww} close shortcuts"	
+
+		;; Vertical Block
+		(box
+			:orientation "v"
+			:space-evenly false
+
+			;; System
+			(box
+				:class "system-box"
+				:orientation "h"
+				:space-evenly false
+
+				;; Time
+				(box
+					:class "time-box"
+					:space-evenly false
+					:halign "start"
+					:valign "center"
+
+					(label :text "${time}" :class "time-label")
+				)
+
+				;; Date
+				(box
+					:class "date-box"
+					:orientation "v"
+					:space-evenly false
+					:halign "center"
+					:valign "center"
+
+					(label :halign "start" :text "${date}")
+					(label :halign "start" :text "${day}")
+				)
+
+				;; Profile
+				(box
+					:orientation "h"
+					:space-evenly false
+					:halign "end"
+					:valign "center"
+					:hexpand true
+
+					(box
+						:class "profile-box"
+						:style "background-image: url('${profileImage}')"
+					)
+				)
+			) 
+
+			;; Toggle Items
+			(box
+				:class "toggleItems-box"
+				:orientation "v"
+				:space-evenly false
+
+				;; First Row
+				(box
+					:class "firstrow"
+					:orientation "h"
+					:space-evenly false
+
+					;; Wifi
+					(box
+						:orientation "h"
+						:space-evenly false 
+						:halign "start"
+
+						(toggleBlock
+							:active "${wifiStatus == "on" ? true : false}"
+							:icon "${wifiIcon}"
+							:label "${wifiSSID}"
+							:onclickToggle "bash scripts/wifi wifiToggle"
+							:onclickSet "bash scripts/wifi trigger"
+						)
+					) 
+
+					;; Bluetooth
+					(box
+						:orientation "h"
+						:space-evenly false 
+						:halign "start"
+
+						(toggleBlock
+							:active "${bluetoothStatus == "on" ? true : false}"
+							:icon "${bluetoothIcon}"
+							:label "${bluetoothDevice}"
+							:onclickToggle "bluetoothctl power ${bluetoothToggle}"
+							:onclickSet "alacritty -e bluetuith &"
+						)
+					) 
+
+					;; ScreenRecord
+					(box
+						:orientation "h"
+						:space-evenly false 
+						:halign "start"
+
+						(toggleBlock
+							:active "${screenRecordStatus == "on" ? true : false}"
+							:icon "${screenRecordIcon}"
+							:label "Record"
+							:onclickToggle "bash scripts/screenRecord take"
+							:onclickSet "bash scripts/screenRecord set"
+						)
+					)
+				)
+
+				;; Second Row
+				(box
+					:class "secondRow"
+					:orientation "h"
+					:space-evenly false 
+
+					;; Volume
+					(box
+						:orientation "h"
+						:space-evenly false 
+						:halign "start"
+
+						(toggleBlock
+							:active "${volumeStatus == "on" ? true : false}"
+							:icon "${volumeIcon}"
+							:label "${volumePort}"
+							:onclickToggle "pactl set-sink-mute ${volumeToggle} toggle"
+							:onclickSet "pavucontrol &"
+						)
+					) 
+
+					;; Microphone
+					(box
+						:orientation "h"
+						:space-evenly false 
+						:halign "start"
+
+						(toggleBlock
+							:active "${microphoneStatus == "on" ? true : false}"
+							:icon "${microphoneIcon}"
+							:label "${microphonePort}"
+							:onclickToggle "pactl set-source-mute 1 toggle"
+							:onclickSet "pavucontrol &"
+						)
+					) 
+
+					;; Screenshot
+					(box
+						:orientation "h"
+						:space-evenly false 
+						:halign "start"
+
+						(toggleBlock
+							:active "${screenshotStatus == "on" ? true : false}"
+							:icon "${screenshotIcon}"
+							:label "Screenshot"
+							:onclickToggle "bash scripts/screenshot take"
+							:onclickSet "bash scripts/screenshot set"
+						)
+					)
+				)
+			)
+
+			;; Music Player
+			(box
+				:class "song-box"
+				:orientation "h"
+				:space-evenly false
+
+				;; Vertical Block
+				(box
+					:class "song-cover-box"
+					:orientation "v"
+					:space-evenly false
+					:spacing 5
+					:halign "start"
+
+					;; Song Background Image Wrap
+					(box
+						:class "song-image-wrap"
+						:space-evenly false
+
+						;; Song Image
+						(box
+							:class "song-image-box"
+							:orientation "h"
+							:space-evenly false
+							:style "background-image: url('${musicImage}')"
+						)
+					)
+
+					;; Song Metddata
+					(box
+						:class "song-metadata"
+						:orientation "v"
+						:space-evenly false
+
+						(label :class "song-title" :halign "start" :limit-width 35 :text "${songTitle}")
+						(label :class "song-artist" :halign "start" :limit-width 35 :text "${songArtist}")
+					)
+				)
+
+				;; Song Control
+				(box
+					:class "song-control-box"
+					:orientation "v"
+					:space-evenly false
+					:halign "end"
+
+					(box
+						:class "song-switch-box"
+						:orientation "v"
+						:space-evenly false
+						:spacing 5
+
+						(button
+							:class "song-previous" :halign "start" :onclick "mocp -r"
+							(label :text "󰙣")
+						)
+
+						(button
+							:class "song-toggle" :halign "center" :onclick "bash scripts/song set"
+							(label :text "${songToggle}")
+						)
+						
+						(button
+							:class "song-next" :halign "end" :onclick "mocp -f"
+							(label :text "󰙡")
+						)
+					)
+				)
+			)
+			
+			;; Slider
+			(box
+				:class "slider-box"
+				:orientation "v"
+				:space-evenly false
+				:spacing 10
+
+				;; Brightness
+				(box
+					:class "slider-brightness-box"
+					:orientation "h"
+					:space-evenly false
+					:spacing 20
+					
+					(box
+						:class "brightness-box"
+						brightnessIcon
+					)
+
+					(scale
+						:class "slider-brightness-scale"
+						:max 501
+						:min 1
+						:onchange "bash scripts/brightness set {}"
+						:value brightnessValue
+					)
+				)
+
+				;; Volume
+				(box
+					:class "slider-volume-box"
+					:orientation "h"
+					:space-evenly false
+					:spacing 20
+					
+					(box
+						:class "volume-box"
+						volumeIcon
+					)
+
+					(scale
+						:class "slider-volume-scale"
+						:max 101
+						:min 0
+						:onchange "bash scripts/volume set {}"
+						:value volumeValue
+					)
+				)
+
+				;; Microphone
+				(box
+					:class "slider-microphone-box"
+					:orientation "h"
+					:space-evenly false
+					:spacing 20
+					
+					(box
+						:class "microphone-box"
+						microphoneIcon
+					)
+
+					(scale
+						:class "slider-microphone-scale"
+						:max 101
+						:min 0
+						:onchange "bash scripts/microphone set {}"
+						:value microphoneValue
+					)
+				)
+			)
+
+			;; Uptime
+			(box
+				:class "uptime-box"
+				:orientation "h"
+				(label :halign "center" :hexpand true :text "${uptime}")
+			)
+
+			;; File Opener
+			(box
+				:class "file-box"
+				:orientation "h"
+				:space-evenly false
+				(box
+					:class "fileBlock-box"
+					:hexpand true
+					:halign "center"
+					:spacing 20
+					(button :class "desktop-button" :onclick "thunar $HOME/Desktop/ &" (label :text "${desktop}"))
+					(button :class "documents-button" :onclick "thunar $HOME/Documents/ &" (label :text "${documents}"))
+					(button :class "downloads-button" :onclick "thunar $HOME/Downloads/ &" (label :text "${downloads}"))
+					(button :class "music-button" :onclick "thunar $HOME/Music/ &" (label :text "${music}"))
+					(button :class "sourceCode-button" :onclick "thunar $HOME/SourceCode/ &" (label :text "${sourceCode}"))
+					(button :class "pictures-button" :onclick "thunar $HOME/Pictures/ &" (label :text "${pictures}"))
+					(button :class "videos-button" :onclick "thunar $HOME/Videos/ &" (label :text "${videos}"))
+				)
+			)
+		)
+	)
+)
+
+(defwidget shortcuts []
+	(box
+		:class "shortcuts-box"
+		:orientation "v"
+		:space-evenly false
+
+		(shortcutsBlock)
+	)
+)
+
+(defwindow shortcuts
+	:monitor 0
+	:geometry 
+		(geometry
+			:x "-10px"
+			:y "43px"
+			:height "500px"
+			:anchor "top right"
+		)
+
+	(shortcuts)
+)

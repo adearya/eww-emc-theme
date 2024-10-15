@@ -1,0 +1,176 @@
+;; Item Bar     
+  
+;; Apps      
+(defwidget apps []
+  (button      
+    :onclick "sh $HOME/SourceCode/rofi-emc-theme/scripts/launcher.sh"
+      
+    (label :class "apps-label" :text "󱓞")
+  )      
+)      
+
+;; Workspaces
+(defwidget workspaces []
+  (box 
+    :class "workspaces-box"
+    :orientation "h"
+    :space-evenly true
+    :spacing 20
+
+    (button 
+      :onclick "i3-msg workspace number 1"
+      
+      (label :class "workspace-label-1" :text "${workspaceIcon1}")
+    ) 
+    (button 
+      :onclick "i3-msg workspace number 2"
+      
+      (label :class "workspace-label-2" :text "${workspaceIcon2}")
+    ) 
+    (button 
+      :onclick "i3-msg workspace number 3"
+      
+      (label :class "workspace-label-3" :text "${workspaceIcon3}")
+    ) 
+    (button 
+      :onclick "i3-msg workspace number 4"
+      
+      (label :class "workspace-label-4" :text "${workspaceIcon4}")
+    ) 
+    (button 
+      :onclick "i3-msg workspace number 5"
+      
+      (label :class "workspace-label-5" :text "${workspaceIcon5}")
+    ) 
+  )
+)
+  
+;; Explorer     
+(defwidget explorer []
+  (box 
+    :class "explorer-box"
+    :orientation "h"
+    :space-evenly true
+    :spacing 20
+
+    (button       
+      :onclick "sh $HOME/SourceCode/rofi-emc-theme/scripts/terminal.sh &" 
+
+      (label :class "terminal-label" :text "")  
+    )
+
+    (button    
+      :onclick "sh & $HOME/SourceCode/rofi-emc-theme/scripts/browser.sh &"
+
+      (label :class "browser-label" :text "") 
+    )
+
+    (button    
+      :onclick "sh & $HOME/SourceCode/rofi-emc-theme/scripts/mount.sh &"
+
+      (label :class "mount-label" :text "") 
+    )
+
+    (button    
+      :onclick "alacritty -e mocp &"
+
+      (label :class "mount-label" :text "") 
+    )
+  )
+)
+
+;; Time
+(defwidget calTime []
+  (label :class "calTime-label" :text "${calTime}")
+)
+
+;; Battery
+(defwidget battery []
+  (label :class "battery-label" :text "${batteryIcon}")
+)
+
+;; Toggle
+(defwidget toggle []
+    (button
+      :onclick "${eww} open --toggle shortcuts"
+    
+	    (box	
+	      :class "toggle-box"
+        :orientation "h"					
+	      :space-evenly "false" 	 
+	      :vexpand "false" 	
+
+        (label :class "wifi-label" :text "${wifiIcon}")
+        (label :class "bluetooth-label" :text "${bluetoothIcon}")
+        (label :class "brightness-label" :text "${brightnessIcon}")
+        (label :class "volume-label" :text "${volumeIcon}")
+        (label :class "microphone-label" :text "${microphoneIcon}")
+      )
+    )
+)
+
+;; Power
+(defwidget power []
+  (button
+    :onclick "bash scripts/powermenu trigger"
+    
+    (label :class "power-label" :text "⏻")
+  ) 
+) 
+ 
+;; Item Position
+ 
+(defwidget start []
+  (box 
+    :orientation "h" 
+    :space-evenly false 
+    :halign "start"
+ 
+    (apps)
+    (workspaces)
+    (explorer)
+  )  
+) 
+ 
+(defwidget center []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+ 
+    (calTime)
+  ) 
+) 
+ 
+(defwidget end []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+ 
+    (battery)
+    (toggle) 
+    (power)
+  )
+)
+
+(defwidget bar []
+  (centerbox 
+    :class "bar"
+    :orientation "h"
+
+    (start)
+    (center)
+    (end)
+  )
+)
+
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :height "25px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  (bar))

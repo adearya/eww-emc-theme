@@ -1,0 +1,28 @@
+#!/bin/bash
+
+getValue() {
+  cat /sys/class/backlight/intel_backlight/brightness
+}
+
+getIcon() {
+  local getValue=$(getValue)
+  if [[ $getValue -le 166 ]]; then
+    echo "󰃞"
+  elif [[ $getValue -le 332 ]]; then
+    echo "󰃟"
+  else
+    echo "󰃠"
+  fi
+}
+
+if [[ $1 == "icon" ]]; then
+  getIcon
+fi
+
+if [[ $1 == "value" ]]; then
+  getValue
+fi
+
+if [[ $1 == "set" ]]; then
+  sudo sh -c "echo $2 > /sys/class/backlight/intel_backlight/brightness"
+fi

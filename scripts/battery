@@ -1,0 +1,61 @@
+#!/bin/bash
+getIcon() {
+  local ac_adapter=$(acpi -b | cut -c 12-19)
+  local battery_level=$(acpi -b | grep -oP '\d+(?=%)')
+  local remaining_time=$(acpi | awk '{print $5}')
+
+  if [ "$ac_adapter" = "Charging" ]; then
+    if [ $battery_level -eq 100 ]; then
+        echo "$battery_level%  󰂅"
+    elif [ $battery_level -ge 90 ]; then
+        echo "$battery_level%  󰂋"
+    elif [ $battery_level -ge 80 ]; then
+        echo "$battery_level%  󰂊"
+    elif [ $battery_level -ge 70 ]; then
+        echo "$battery_level%  󰢞"
+    elif [ $battery_level -ge 60 ]; then
+        echo "$battery_level%  󰂉"
+    elif [ $battery_level -ge 50 ]; then
+        echo "$battery_level%  󰢝"
+    elif [ $battery_level -ge 40 ]; then
+        echo "$battery_level%  󰂈"
+    elif [ $battery_level -ge 30 ]; then
+        echo "$battery_level%  󰂇"
+    elif [ $battery_level -ge 20 ]; then
+        echo "$battery_level%  󰂆"
+    elif [ $battery_level -ge 10 ]; then
+        echo "$battery_level%  󰢜"
+    else
+        echo "$battery_level%  󰢟"
+    fi
+  else
+    if [ $battery_level -eq 100 ]; then
+        echo "$battery_level%  󰁹"
+    elif [ $battery_level -ge 90 ]; then
+        echo "$battery_level%  󰂂"
+    elif [ $battery_level -ge 80 ]; then
+        echo "$battery_level%  󰂁"
+    elif [ $battery_level -ge 70 ]; then
+        echo "$battery_level%  󰂀"
+    elif [ $battery_level -ge 60 ]; then
+        echo "$battery_level%  󰁿"
+    elif [ $battery_level -ge 50 ]; then
+        echo "$battery_level%  󰁾"
+    elif [ $battery_level -ge 40 ]; then
+        echo "$battery_level%  󰁽"
+    elif [ $battery_level -ge 30 ]; then
+        echo "$battery_level%  󰁼"
+    elif [ $battery_level -ge 20 ]; then
+        echo "$battery_level%  󰁻"
+    elif [ $battery_level -ge 10 ]; then
+        echo "$battery_level%  󰁺"
+    else
+        echo "$battery_level%  󰂎"
+    fi
+  fi
+
+}
+
+if [[ $1 == "icon" ]]; then
+  getIcon
+fi

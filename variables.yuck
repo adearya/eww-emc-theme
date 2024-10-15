@@ -1,0 +1,82 @@
+;; ===== Bar and Shortcuts =====
+
+;; Workspaces
+(defpoll workspaceIcon1 :interval "0s" "bash scripts/workspaces icon1")
+(defpoll workspaceIcon2 :interval "0s" "bash scripts/workspaces icon2")
+(defpoll workspaceIcon3 :interval "0s" "bash scripts/workspaces icon3")
+(defpoll workspaceIcon4 :interval "0s" "bash scripts/workspaces icon4")
+(defpoll workspaceIcon5 :interval "0s" "bash scripts/workspaces icon5")
+
+;; Battery
+(defpoll batteryIcon :interval "0s" "bash scripts/battery icon")
+
+;; Calendar
+(defpoll calTime :interval "0s" "bash scripts/timedate calTime")
+
+;; Wifi
+(defpoll wifiIcon :interval "0s" "bash scripts/wifi icon")
+(defpoll wifiStatus :interval "0s" "bash scripts/wifi status")
+(defpoll wifiSSID :interval "0s" "bash scripts/wifi ssid")
+
+;; Bluetooth
+(defpoll bluetoothIcon :interval "0s" "bash scripts/bluetooth icon")
+(defpoll bluetoothStatus :interval "0s" "bash scripts/bluetooth status")
+(defpoll bluetoothDevice :interval "0s" "bash scripts/bluetooth device")
+(defpoll bluetoothToggle :interval "0s" "bash scripts/bluetooth toggle")
+
+;; Screen Record
+(defpoll screenRecordIcon :interval "0s" "bash scripts/screenRecord icon")
+(defpoll screenRecordStatus :interval "0s" "bash scripts/screenRecord status")
+
+;; Volume
+(defpoll volumeIcon :interval "0s" "bash scripts/volume icon")
+(defpoll volumeToggle :interval "0s" "bash scripts/volume toggle")
+(defpoll volumeStatus :interval "0s" "bash scripts/volume status")
+(defpoll volumeValue :interval "0s" "bash scripts/volume value")
+(defpoll volumePort :interval "0s" "bash scripts/volume port")
+
+;; Microphone
+(defpoll microphoneIcon :interval "0s" "bash scripts/microphone icon")
+(defpoll microphoneStatus :interval "0s" "bash scripts/microphone status")
+(defpoll microphoneValue :interval "0s" "bash scripts/microphone value")
+(defpoll microphonePort :interval "0s" "bash scripts/microphone port")
+
+;; Screenshot
+(defpoll screenshotIcon :interval "0s" "bash scripts/screenshot icon")
+(defpoll screenshotStatus :interval "0s" "bash scripts/screenshot status")
+
+;; Brightness
+(defpoll brightnessIcon :interval "0s" "bash scripts/brightness icon")
+(defpoll brightnessValue :interval "0s" "bash scripts/brightness value")
+
+;; System
+(defpoll time :interval "0s" "bash scripts/timedate time")
+(defpoll date :interval "0s" "bash scripts/timedate date")
+(defpoll day :interval "0s" "bash scripts/timedate day")
+
+;; Music Player
+(defpoll songPrevious :interval "0s" "bash scripts/song previous")
+(defpoll songToggle :interval "0s" "bash scripts/song toggle")
+(defpoll songNext :interval "0s" "bash scripts/song next")
+(defpoll songTitle :interval "0s" "bash scripts/song title")
+(defpoll songArtist :interval "0s" "bash scripts/song artist")
+
+;; Uptime
+(defpoll uptime :interval "0s" "bash scripts/uptime uptime")
+
+;; File Opener
+(defpoll desktop :interval "0s" "bash scripts/fileOpener desktop")
+(defpoll documents :interval "0s" "bash scripts/fileOpener documents")
+(defpoll downloads :interval "0s" "bash scripts/fileOpener downloads")
+(defpoll music :interval "0s" "bash scripts/fileOpener music")
+(defpoll sourceCode :interval "0s" "bash scripts/fileOpener sourceCode")
+(defpoll pictures :interval "0s" "bash scripts/fileOpener pictures")
+(defpoll videos :interval "0s" "bash scripts/fileOpener videos")
+
+
+
+;; ===== Variable =====
+
+(defvar profileImage "/home/ade/SourceCode/eww-emc-theme/images/mascot.jpeg")
+(defvar musicImage "/home/ade/SourceCode/eww-emc-theme/images/harley_quinn_music.jpeg")
+(defvar eww "eww -c ~/SourceCode/eww-emc-theme")

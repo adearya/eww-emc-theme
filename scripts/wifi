@@ -1,0 +1,72 @@
+#!/bin/bash
+
+setTriggerRofi() {
+  bash ~/SourceCode/rofi-emc-theme/scripts/wifi.sh
+}
+
+getConnectivity() {
+  nmcli n connectivity
+}
+
+getStatus() {
+  local connectivity=$(getConnectivity)
+  if [[ $connectivity == "none" ]]; then
+    echo "off"
+  else
+    echo "on"
+  fi
+}
+
+getIcon() {
+  local connectivity=$(getConnectivity)
+  if [[ $connectivity == "none" ]]; then
+    echo "󰖪"
+  elif [[ $connectivity == "portal" ]]; then
+    echo "󱚵"
+  elif [[ $connectivity == "limited" ]]; then
+    echo "󱚿"
+  elif [[ $connectivity == "full" ]]; then
+    echo "󰖩"
+  else
+    echo "󱛅"
+  fi
+
+}
+
+setWifiToogle() {
+  local connectivity=$(getConnectivity)
+  if [[ $connectivity == "none" ]]; then
+    nmcli d connect wlan0
+  else
+    nmcli d disconnect wlan0
+  fi
+}
+
+getSSID() {
+  local nameConnection=$(nmcli -g name connection | head -n 1)
+  if [ ${#nameConnection} -gt 11 ]; then
+    echo "${nameConnection:0:11}..."
+  else
+    echo "$nameConnection"
+  fi
+}
+
+if [[ $1 == "trigger" ]]; then
+  setTriggerRofi
+fi
+
+if [[ $1 == "status" ]]; then
+  getStatus
+fi
+
+if [[ $1 == "icon" ]]; then
+  getIcon
+fi
+
+if [[ $1 == "ssid" ]]; then
+  getSSID
+fi
+
+if [[ $1 == "wifiToggle" ]]; then
+  setWifiToogle
+fi

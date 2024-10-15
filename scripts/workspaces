@@ -1,0 +1,34 @@
+#!/bin/bash
+
+getIcon() {
+  local workspaceNumber=$1
+  local workspaceFocused=$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused == true) | .num')
+  local workspaceEmpty=$(i3-msg -t get_workspaces | jq '.[] | .num' | grep "$1")
+  if [[ $workspaceFocused == $workspaceNumber ]]; then
+    echo ""
+  elif [[ $workspaceEmpty == $workspaceNumber ]]; then
+    echo ""
+  else
+    echo ""
+  fi
+}
+
+if [[ $1 == "icon1" ]]; then
+  getIcon 1
+fi
+
+if [[ $1 == "icon2" ]]; then
+  getIcon 2
+fi
+
+if [[ $1 == "icon3" ]]; then
+  getIcon 3
+fi
+
+if [[ $1 == "icon4" ]]; then
+  getIcon 4
+fi
+
+if [[ $1 == "icon5" ]]; then
+  getIcon 5
+fi

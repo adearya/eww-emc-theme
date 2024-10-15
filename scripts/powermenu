@@ -1,0 +1,9 @@
+#!/bin/bash
+
+setTriggerRofi() {
+  bash ~/SourceCode/rofi-emc-theme/scripts/powermenu.sh
+}
+
+if [[ $1 == "trigger" ]]; then
+ setTriggerRofi 
+fi

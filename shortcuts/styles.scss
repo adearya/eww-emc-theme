@@ -1,0 +1,251 @@
+// Shortcuts
+.shortcuts-box {
+  background-color: Black;
+  border: 2px solid Magenta;
+  border-radius: 30px;
+  color: White;
+}
+
+// Toggle Block
+.toggleBlock-box {
+  font-family: Hack Nerd Font;
+  font-size: 14px;
+  margin: 5px 0px 10px 23px;
+
+  .toggleBlockIcon-box {
+    .icon-button {
+      background-color: $LightBlack;
+      border-radius: 15px 0px 0px 15px;
+      padding: 5px 20px 5px 18px;
+      &.active { background-color: Blue; }
+    }
+
+    .separator-box {
+      background-color: Black;
+      padding: 0px 2px;
+    }
+
+    .setting-button {
+      background-color: $LightBlack;
+      border-radius: 0px 15px 15px 0px;
+      padding: 7px 15px;
+      &.active { background-color: Blue; }
+    }
+  }
+}
+
+// System
+.system-box {
+  border-radius: 30px 30px 0px 0px;
+  
+  .time-box {
+    font-size: 40px;
+    margin: 5px 15px;
+  }
+
+  .profile-box {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    margin: 5px 15px;
+    min-width: 50px;
+    min-height: 50px;
+  }
+}
+
+// Music Player
+.song-box {
+  background-color: $LightBlack;
+  border-radius: 7px;
+  margin: 5px 15px;
+  padding: 10px;
+
+  .song-cover-box {
+
+    .song-image-wrap {
+      background-color: Black;
+      padding: 0px 40px;
+
+      .song-image-box {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-width: 180px;
+        min-height: 120px;
+      }
+    }
+
+    .song-metadata {
+
+      .song-artist {
+        background-color: Orchid;
+        border-radius: 5px;
+        color: Black;
+        font-size: 12px;
+        padding: 0px 5px;
+      }
+    }
+  }
+  .song-control-box {
+
+    .song-switch-box {
+      margin: 0px 15px;
+
+      .song-previous {
+        color: Orchid;
+        font-family: Hack Nerd Font;
+        font-size: 30px;
+      }
+
+      .song-toggle {
+        color: Orchid;
+        font-family: Hack Nerd Font;
+        font-size: 30px;
+      }
+
+      .song-next {
+        color: Orchid;
+        font-family: Hack Nerd Font;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+// Slider
+.slider-box {
+  background-color: $LightBlack;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 15px;
+
+  // Brightness
+  .brightness-box {
+    color: Orange;
+  }
+
+  .slider-brightness-box {
+    background-color: Black;
+    padding: 5px 20px;
+
+    .slider-brightness-scale {
+      font-size: 19px;
+    }
+
+    & scale trough {
+      all: unset;
+      border-radius: 10px;
+      background-color: $LightBlack;
+      border: none;
+      min-height: 8px;
+      min-width: 225px;
+
+      & highlight {
+        all: unset;
+        background: linear-gradient(to right, Orange, White);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  // Volume
+  .volume-box {
+    color: Cyan;
+  }
+
+  .slider-volume-box {
+    background-color: Black;
+    padding: 5px 20px;
+
+    .slider-volume-scale {
+      font-size: 19px;
+    }
+
+    & scale trough {
+      all: unset;
+      border-radius: 10px;
+      background-color: $LightBlack;
+      border: none;  
+      min-height: 8px;  
+      min-width: 225px; 
+
+      & highlight {  
+        all: unset;  
+        background: linear-gradient(to right, Cyan, White);
+        border-radius: 10px;
+      }  
+    }  
+  }  
+
+  // Microphone
+  .microphone-box {
+    color: Pink; 
+  } 
+ 
+  .slider-microphone-box {
+    background-color: Black;
+    padding: 5px 20px;
+
+    .slider-microphone-scale {
+      font-size: 19px;
+    }   
+  
+    & scale trough {
+      all: unset;
+      border-radius: 10px;
+      background-color: $LightBlack;
+      border: none;
+      min-height: 8px;
+      min-width: 225px;
+
+      & highlight {
+        all: unset;
+        background: linear-gradient(to right, Magenta, White);
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+// Uptime
+.uptime-box {
+  font-size: 12px;
+  padding: 0px 23px;
+}
+
+// File Opener
+.file-box {
+  padding: 5px 30px;
+
+  .fileBlock-box {
+
+    .desktop-button {
+      color: Lime;
+    }
+
+    .documents-button {
+      color: Lavender;
+    } 
+ 
+    .downloads-button {
+      color: Salmon;
+    } 
+ 
+    .music-button {
+      color: Yellow;
+    }
+
+    .sourceCode-button {
+      color: Aquamarine;
+    } 
+ 
+    .pictures-button {
+      color: LightBlue;
+    } 
+ 
+    .videos-button { 
+      color: Cyan;
+    }
+  }
+}

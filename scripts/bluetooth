@@ -1,0 +1,53 @@
+#!/bin/bash
+
+powered() {
+  bluetoothctl show | grep "Powered" | awk '{ print $2 }'
+}
+
+getStatus() {
+  powered=$(powered)
+  if [[ $powered == "no" ]]; then
+    echo off
+  else
+    echo on
+  fi
+}
+
+getDevice() {
+  device=$(bluetoothctl info | grep Name | awk '{ print$2 }')
+  battery=$(bluetoothctl info | grep Battery | awk '{ print $4 }' | tr -d '()')
+  if [[ -n $device ]]; then
+    if [ ${#device} -gt 9 ]; then
+      echo "${device:0:4}... $battery%"
+    else
+      echo "$device $battery%"
+    fi
+  else
+    echo "Bluetooth"
+  fi
+}
+
+getIcon() {
+  echo "󰂯"
+}
+
+if [[ $1 == "icon" ]]; then
+  getIcon
+fi
+
+if [[ $1 == "status" ]]; then
+  getStatus
+fi
+
+if [[ $1 == "device" ]]; then
+  getDevice
+fi
+
+if [[ $1 == "toggle" ]]; then
+  powered=$(powered)
+  if [[ $powered == "no" ]]; then
+    echo on
+  else
+    echo off
+  fi
+fi

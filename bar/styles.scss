@@ -1,0 +1,61 @@
+// Bar
+.bar {
+  background-color  : Black;
+  color             : White;
+}
+
+.apps-label {
+  background-color: Lime;
+  border-radius: 20px;
+  color: Black;
+  padding: 0px 10px 0px 5px;
+  margin: 5px 0px 5px 5px;
+}
+
+.workspaces-box {
+  background-color: $LightBlack;
+  border-radius: 20px;
+  color: Magenta;
+  padding: 0px 13px 0px 10px;
+  margin: 5px 10px;
+}
+
+.explorer-box {
+  background-color: $LightBlack;
+  border-radius: 20px;
+  color: Lavender;
+  padding: 0px 13px 0px 10px;
+  margin: 5px 0px;
+
+  .terminal-label, .browser-label, .mount-label {
+    font-family: Hack Nerd Font;
+    font-size: 14px;
+  }
+}
+
+.battery-label {
+  background-color: $LightBlack;
+  border-radius: 20px;
+  color: Pink;
+  padding: 0px 10px 0px 5px;
+  margin: 5px 10px;
+}
+
+.toggle-box {
+  background-color: $LightBlack;
+  border-radius: 20px;
+  color: LightBlue;
+  margin: 5px 0px;
+  .wifi-label,
+  .bluetooth-label,
+  .brightness-label,
+  .volume-label,
+  .microphone-label {
+    margin: 0px 10px;
+  } 
+} 
+ 
+.power-label {
+  color: Cyan;
+  margin: 0px 10px;
+}

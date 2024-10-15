@@ -1,0 +1,63 @@
+#!/bin/bash
+
+getIconToggle() {
+  local state=$(mocp -Q %state)
+  if [[ $state == "PLAY" ]]; then
+    echo ""
+  elif [[ $state == "PAUSE" ]]; then
+    echo ""
+  else
+    echo ""
+  fi
+}
+
+getTitle() {
+  local state=$(mocp -Q %state)
+  if [[ $state == "STOP" ]]; then
+    echo "No Title"
+  else
+    mocp -Q %song
+  fi
+}
+
+getArtist() {
+  local state=$(mocp -Q %state)
+  if [[ $state == "STOP" ]]; then
+    echo "No Artist"
+  else
+    mocp -Q %artist
+  fi
+}
+
+setToggle() {
+  local state=$(mocp -Q %state)
+  if [[ $state == "STOP" ]]; then
+    alacritty -e mocp &
+  elif [[ $state == "PLAY" || "PAUSE" ]]; then
+    mocp -G
+  fi
+}
+
+if [[ $1 == "previous" ]]; then
+  getPrevious  
+fi 
+ 
+if [[ $1 == "toggle" ]]; then
+  getIconToggle
+fi 
+ 
+if [[ $1 == "Next" ]]; then
+  getNext
+fi 
+ 
+if [[ $1 == "title" ]]; then
+  getTitle  
+fi 
+ 
+if [[ $1 == "artist" ]]; then
+  getArtist  
+fi
+
+if [[ $1 == "set" ]]; then
+ setToggle 
+fi 

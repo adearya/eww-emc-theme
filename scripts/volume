@@ -1,0 +1,103 @@
+#!/bin/bash
+
+isMuted () {
+  profile=$(pacmd list-sinks | grep -A 1 "active port" | grep "active port" | awk -F'[<>]' '{print $2}' | grep headset)
+  if  [[ -n $profile ]]; then
+    pacmd list-sinks | awk '/muted/ { print $2 }' | awk 'NR==2'
+  else
+    pacmd list-sinks | awk '/muted/ { print $2 }' | awk 'NR==1'
+  fi
+}
+
+getPercentage () {
+  muted=$(isMuted)
+  if [[ $muted == 'yes' ]]; then
+    echo 0%
+  else
+    profile=$(pacmd list-sinks | grep -A 1 "active port" | grep "active port" | awk -F'[<>]' '{print $2}' | grep headset)
+    if  [[ -n $profile ]]; then
+      bluezSink=$(pactl list sinks short | grep bluez | awk '{ print$2 }')
+      percentage=$(pactl get-sink-volume $bluezSink | awk -F '[ /]' '/Volume:/ {print $(NF-4)}')
+      echo "${percentage}"
+    else
+      percentage=$(pactl get-sink-volume 0 | awk -F '[ /]' '/Volume:/ {print $(NF-4)}')
+      echo "${percentage}"
+    fi
+  fi
+}
+
+getStatus () {
+  volume=$(getPercentage)
+  if [[ $volume == "0%" ]]; then
+    echo off
+  else
+    echo on
+  fi
+}
+
+getIcon () {
+  volume=$(getPercentage)
+  if [[ $volume == "0%" ]]; then
+    echo ""
+  else
+    echo ""
+  fi
+}
+
+getPort() {
+  port=$(pacmd list-sinks | grep -A 1 "active port" | grep "active port" | awk -F'[<>]' '{print $2}')
+  if [ ${port} == "analog-output-headphones" ]; then
+    echo "Headset"
+  else
+    profile=$(pacmd list-sinks | grep -A 1 "active port" | grep "active port" | awk -F'[<>]' '{print $2}' | grep headset)
+    if [[ -n $profile ]]; then
+      echo "TWS"
+    else
+      echo "Internal"
+    fi
+  fi
+}
+
+getValue () {
+  percentage=$(getPercentage)
+  echo "$percentage" | tr -d '%'
+}
+
+
+if [[ $1 == "icon" ]]; then
+  getIcon
+fi
+
+if [[ $1 == "set" ]]; then
+  profile=$(pacmd list-sinks | grep -A 1 "active port" | grep "active port" | awk -F'[<>]' '{print $2}' | grep headset)
+  if  [[ -n $profile ]]; then
+    bluezSink=$(pactl list sinks short | grep bluez | awk '{ print$2 }')
+    pactl set-sink-mute $bluezSink 0 
+    pactl set-sink-volume $bluezSink $2%
+  else
+    pactl set-sink-mute 0 0
+    pactl set-sink-volume 0 $2%
+  fi
+fi
+
+if [[ $1 == "toggle" ]]; then
+  profile=$(pacmd list-sinks | grep -A 1 "active port" | grep "active port" | awk -F'[<>]' '{print $2}' | grep headset)
+  if  [[ -n $profile ]]; then
+    bluezSink=$(pactl list sinks short | grep bluez | awk '{ print$2 }')
+    echo $bluezSink
+  else
+    echo 0
+  fi
+fi
+
+if [[ $1 == "status" ]]; then
+  getStatus
+fi
+
+if [[ $1 == "port" ]]; then
+  getPort
+fi
+
+if [[ $1 == "value" ]]; then
+  getValue
+fi

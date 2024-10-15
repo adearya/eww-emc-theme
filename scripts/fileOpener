@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [[ $1 == "desktop"  ]]; then 
+  echo "󰇄"
+fi
+
+if [[ $1 == "documents"  ]]; then 
+  echo "󰈙"
+fi
+
+if [[ $1 == "downloads"  ]]; then 
+  echo ""
+fi
+
+if [[ $1 == "music"  ]]; then 
+  echo ""
+fi
+
+if [[ $1 == "sourceCode"  ]]; then 
+  echo ""
+fi
+
+if [[ $1 == "pictures"  ]]; then 
+  echo ""
+fi
+
+if [[ $1 == "videos"  ]]; then 
+  echo ""
+fi

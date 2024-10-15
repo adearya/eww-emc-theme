@@ -1,0 +1,69 @@
+#!/bin/bash
+
+isMuted () {
+  pacmd list-sources | awk '/muted/ { print $2 }' | awk 'NR==2'
+}
+
+getPercentage () {
+  local muted=$(isMuted)
+  if [[ $muted == 'yes' ]]; then
+    echo 0%
+  else
+    percentage=$(pactl get-source-volume 1 | awk -F '[ /]' '/Volume:/ {print $(NF-4)}')
+    echo "${percentage}"
+  fi
+}
+
+getStatus () {
+  local volume=$(getPercentage)
+  if [[ $volume == "0%" ]]; then
+    echo off
+  else
+    echo on
+  fi
+}
+
+getIcon () {
+  local volume=$(getPercentage)
+  if [[ $volume == "0%" ]]; then
+    echo "󰍭"
+  else
+    echo "󰍬"
+  fi
+}
+
+getPort() {
+  local port=$(pacmd list-sources | grep -A 1 "active port" | grep "active port" | awk -F'[<>]' '{print $2}')
+  if [ ${port} == "analog-input-headset-mic" ]; then
+    echo "Headset"
+  else
+    echo "Internal"
+  fi
+}
+
+getValue () {
+  local percentage=$(getPercentage)
+  echo "$percentage" | tr -d '%'
+}
+
+
+if [[ $1 == "icon" ]]; then
+  getIcon
+fi
+
+if [[ $1 == "set" ]]; then
+  pactl set-source-mute 1 0
+  pactl set-source-volume 1 $2%
+fi
+
+if [[ $1 == "status" ]]; then
+  getStatus
+fi
+
+if [[ $1 == "port" ]]; then
+  getPort
+fi
+
+if [[ $1 == "value" ]]; then
+  getValue
+fi

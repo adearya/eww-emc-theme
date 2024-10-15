@@ -1,0 +1,9 @@
+* {
+  all: unset;
+  font-family: Gentium Book Plus; 
+}
+
+$LightBlack: #262626;
+
+@import "bar/styles.scss";
+@import "shortcuts/styles.scss";
