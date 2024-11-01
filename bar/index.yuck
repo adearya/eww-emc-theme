@@ -92,11 +92,11 @@
 ;; Toggle
 (defwidget toggle []
     (button
-      :onclick "${eww} open --toggle shortcuts"
+      :onclick "eww -c ~/SourceCode/eww-emc-theme daemon && eww -c ~/SourceCode/eww-emc-theme --no-daemonize open --toggle shortcuts"
     
 	    (box	
 	      :class "toggle-box"
-        :orientation "h"					
+          :orientation "h"					
 	      :space-evenly "false" 	 
 	      :vexpand "false" 	
 

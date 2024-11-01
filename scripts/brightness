@@ -1,7 +1,8 @@
 #!/bin/bash
 
 getValue() {
-  cat /sys/class/backlight/intel_backlight/brightness
+  sudo cat /sys/class/backlight/intel_backlight/brightness
+  # xbacklight -get
 }
 
 getIcon() {
@@ -25,4 +26,5 @@ fi
 
 if [[ $1 == "set" ]]; then
   sudo sh -c "echo $2 > /sys/class/backlight/intel_backlight/brightness"
+  # sudo xbacklight -set $2
 fi
