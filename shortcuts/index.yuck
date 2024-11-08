@@ -35,7 +35,7 @@
 
 	;; Event
 	(eventbox	
-			:onhoverlost "${eww} open bar & ${eww} close shortcuts"
+			:onhoverlost "${eww} open bar & ${eww} close shortcuts --restart"
 
 		;; Vertical Block
 		(box
