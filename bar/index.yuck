@@ -92,7 +92,7 @@
 ;; Toggle
 (defwidget toggle []
     (button
-      :onclick "${eww} open shortcuts & ${eww} close bar"
+      :onclick "${eww} open shortcuts & ${eww} close bar --restart"
     
 	    (box	
 	      :class "toggle-box"
