@@ -35,7 +35,7 @@
 
 	;; Event
 	(eventbox	
-    :onhoverlost "${eww} close shortcuts"	
+			:onhoverlost "${eww} open bar & ${eww} close shortcuts"
 
 		;; Vertical Block
 		(box
@@ -123,7 +123,7 @@
 							:icon "${bluetoothIcon}"
 							:label "${bluetoothDevice}"
 							:onclickToggle "bluetoothctl power ${bluetoothToggle}"
-							:onclickSet "alacritty -e bluetuith &"
+							:onclickSet "alacritty -e bluetuith & ${eww} close shortcuts & ${eww} open bar"
 						)
 					) 
 
@@ -160,7 +160,7 @@
 							:icon "${volumeIcon}"
 							:label "${volumePort}"
 							:onclickToggle "pactl set-sink-mute ${volumeToggle} toggle"
-							:onclickSet "pavucontrol &"
+							:onclickSet "pavucontrol & ${eww} close shortcuts & ${eww} open bar"
 						)
 					) 
 
@@ -175,7 +175,7 @@
 							:icon "${microphoneIcon}"
 							:label "${microphonePort}"
 							:onclickToggle "pactl set-source-mute 1 toggle"
-							:onclickSet "pavucontrol &"
+							:onclickSet "pavucontrol & ${eww} close shortcuts & ${eww} open bar"
 						)
 					) 
 
@@ -354,13 +354,13 @@
 					:hexpand true
 					:halign "center"
 					:spacing 20
-					(button :class "desktop-button" :onclick "thunar $HOME/Desktop/ &" (label :text "${desktop}"))
-					(button :class "documents-button" :onclick "thunar $HOME/Documents/ &" (label :text "${documents}"))
-					(button :class "downloads-button" :onclick "thunar $HOME/Downloads/ &" (label :text "${downloads}"))
-					(button :class "music-button" :onclick "thunar $HOME/Music/ &" (label :text "${music}"))
-					(button :class "sourceCode-button" :onclick "thunar $HOME/SourceCode/ &" (label :text "${sourceCode}"))
-					(button :class "pictures-button" :onclick "thunar $HOME/Pictures/ &" (label :text "${pictures}"))
-					(button :class "videos-button" :onclick "thunar $HOME/Videos/ &" (label :text "${videos}"))
+					(button :class "desktop-button" :onclick "alacritty -e ranger --choosedir= $HOME/Desktop/ & ${eww} close shortcuts & ${eww} open bar" (label :text "${desktop}"))
+					(button :class "documents-button" :onclick "alacritty -e ranger --choosedir= $HOME/Documents/ & ${eww} close shortcuts & ${eww} open bar" (label :text "${documents}"))
+					(button :class "downloads-button" :onclick "alacritty -e ranger --choosedir= $HOME/Downloads/ & ${eww} close shortcuts & ${eww} open bar" (label :text "${downloads}"))
+					(button :class "music-button" :onclick "alacritty -e ranger --choosedir= $HOME/Music/ & ${eww} close shortcuts & ${eww} open bar" (label :text "${music}"))
+					(button :class "sourceCode-button" :onclick "alacritty -e ranger --choosedir= $HOME/SourceCode/ & ${eww} close shortcuts & ${eww} open bar" (label :text "${sourceCode}"))
+					(button :class "pictures-button" :onclick "alacritty -e ranger --choosedir= $HOME/Pictures/ & ${eww} close shortcuts & ${eww} open bar" (label :text "${pictures}"))
+					(button :class "videos-button" :onclick "alacritty -e ranger --choosedir= $HOME/Videos/ & ${eww} close shortcuts & ${eww} open bar" (label :text "${videos}"))
 				)
 			)
 		)
@@ -382,7 +382,7 @@
 	:geometry 
 		(geometry
 			:x "-10px"
-			:y "43px"
+			:y "10px"
 			:height "500px"
 			:anchor "top right"
 		)

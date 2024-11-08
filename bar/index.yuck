@@ -3,7 +3,7 @@
 ;; Apps      
 (defwidget apps []
   (button      
-    :onclick "sh $HOME/SourceCode/rofi-emc-theme/scripts/launcher.sh"
+    :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/launcher.sh"
       
     (label :class "apps-label" :text "󱓞")
   )      
@@ -54,19 +54,19 @@
     :spacing 20
 
     (button       
-      :onclick "sh $HOME/SourceCode/rofi-emc-theme/scripts/terminal.sh &" 
+      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/terminal.sh &" 
 
       (label :class "terminal-label" :text "")  
     )
 
     (button    
-      :onclick "sh & $HOME/SourceCode/rofi-emc-theme/scripts/browser.sh &"
+      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/browser.sh &"
 
       (label :class "browser-label" :text "") 
     )
 
     (button    
-      :onclick "sh & $HOME/SourceCode/rofi-emc-theme/scripts/mount.sh &"
+      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/mount.sh &"
 
       (label :class "mount-label" :text "") 
     )
@@ -92,7 +92,7 @@
 ;; Toggle
 (defwidget toggle []
     (button
-      :onclick "eww -c ~/SourceCode/eww-emc-theme daemon && eww -c ~/SourceCode/eww-emc-theme --no-daemonize open --toggle shortcuts"
+      :onclick "${eww} open shortcuts & ${eww} close bar"
     
 	    (box	
 	      :class "toggle-box"

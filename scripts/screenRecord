@@ -21,14 +21,17 @@ setTakeRecord() {
     sh -c "echo start > $HOME/.cache/screenrecord/status"
     if [[ $typeSource == "Monitor built-in audio input" ]]; then
       dunstify "Start recording in 5 seconds"
-      ffmpeg -f x11grab -video_size 1366x768 -i $DISPLAY -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor "$(generate_filename)"
+      # ffmpeg -f x11grab -video_size 1366x768 -i $DISPLAY -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor "$(generate_filename)"
+      echo "record-start" | simplescreenrecorder --start-hidden
     else   
       dunstify "Start recording in 5 seconds"
-      ffmpeg -f x11grab -video_size 1366x768 -i $DISPLAY -f pulse -i alsa_input.pci-0000_00_1f.3.analog-stereo "$(generate_filename)"
+      # ffmpeg -f x11grab -video_size 1366x768 -i $DISPLAY -f pulse -i alsa_input.pci-0000_00_1f.3.analog-stereo "$(generate_filename)"
+      echo "record-start" | simplescreenrecorder --start-hidden
     fi
   elif [[ $status == "start" && -n $typeSource ]]; then
     sh -c "echo stop > $HOME/.cache/screenrecord/status"
-    pkill -f ffmpeg
+    # pkill -f ffmpeg
+    echo -e "record-save\nquit" | simplescreenrecorder 
   fi
 }   
    
