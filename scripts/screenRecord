@@ -1,12 +1,11 @@
 #!/bin/bash
 
 setTriggerRofi() {
-  bash ~/SourceCode/rofi-emc-theme/scripts/screenrecord.sh
+  bash ~/SourceCode/rofi-emc-theme/scripts/screenRecord
 }
 
 setTakeRecord() {
   status=$(cat $HOME/.cache/screenrecord/status)
-  typeSource=$(cat $HOME/.cache/screenrecord/typeSource)  
    
   generate_filename() {
     local DIR=~/Videos
@@ -17,21 +16,21 @@ setTakeRecord() {
     echo "$DIR/$(date "+%Y-%m-%d")-at-$(date "+%k")-o'clocks-screenrecord-$(printf $counter).mkv"
   }
 
-  if [[ $status == "stop" && -n $typeSource ]]; then
+  if [[ $status == "stop" ]]; then
     sh -c "echo start > $HOME/.cache/screenrecord/status"
-    if [[ $typeSource == "Monitor built-in audio input" ]]; then
-      dunstify "Start recording in 5 seconds"
-      # ffmpeg -f x11grab -video_size 1366x768 -i $DISPLAY -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor "$(generate_filename)"
-      echo "record-start" | simplescreenrecorder --start-hidden
-    else   
-      dunstify "Start recording in 5 seconds"
-      # ffmpeg -f x11grab -video_size 1366x768 -i $DISPLAY -f pulse -i alsa_input.pci-0000_00_1f.3.analog-stereo "$(generate_filename)"
-      echo "record-start" | simplescreenrecorder --start-hidden
-    fi
-  elif [[ $status == "start" && -n $typeSource ]]; then
+    (
+      echo "record-start"
+
+      while [ "$(cat $HOME/.cache/screenrecord/status)" != "stop" ]; do
+        sleep 1
+      done
+
+      echo "record-pause"
+      echo "record-save"
+      echo "quit"
+    ) | simplescreenrecorder --start-hidden
+  else
     sh -c "echo stop > $HOME/.cache/screenrecord/status"
-    # pkill -f ffmpeg
-    echo -e "record-save\nquit" | simplescreenrecorder 
   fi
 }   
    
