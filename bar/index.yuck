@@ -3,7 +3,7 @@
 ;; Apps      
 (defwidget apps []
   (button      
-    :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/launcher.sh"
+    :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/launcher"
       
     (label :class "apps-label" :text "󱓞")
   )      
@@ -45,7 +45,7 @@
   )
 )
   
-;; Explorer     
+;; Explorer  
 (defwidget explorer []
   (box 
     :class "explorer-box"
@@ -54,19 +54,19 @@
     :spacing 20
 
     (button       
-      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/terminal.sh &" 
+      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/terminal" 
 
       (label :class "terminal-label" :text "")  
     )
 
     (button    
-      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/browser.sh &"
+      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/browser"
 
       (label :class "browser-label" :text "") 
     )
 
     (button    
-      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/mount.sh &"
+      :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/mount"
 
       (label :class "mount-label" :text "") 
     )
@@ -112,7 +112,7 @@
 ;; Power
 (defwidget power []
   (button
-    :onclick "bash scripts/powermenu trigger"
+    :onclick "bash $HOME/SourceCode/rofi-emc-theme/scripts/powermenu"
     
     (label :class "power-label" :text "⏻")
   ) 
