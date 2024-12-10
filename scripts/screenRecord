@@ -6,6 +6,7 @@ setTriggerRofi() {
 
 setTakeRecord() {
   status=$(cat $HOME/.cache/screenrecord/status)
+  eww="eww -c $HOME/SourceCode/eww-emc-theme"
    
   generate_filename() {
     local DIR=~/Videos
@@ -17,6 +18,7 @@ setTakeRecord() {
   }
 
   if [[ $status == "stop" ]]; then
+    sh -c "$eww close shortcuts & $eww open bar"
     sh -c "echo start > $HOME/.cache/screenrecord/status"
     (
       echo "record-start"
@@ -30,6 +32,7 @@ setTakeRecord() {
       echo "quit"
     ) | simplescreenrecorder --start-hidden
   else
+    sh -c "$eww close shortcuts & $eww open bar"
     sh -c "echo stop > $HOME/.cache/screenrecord/status"
   fi
 }   

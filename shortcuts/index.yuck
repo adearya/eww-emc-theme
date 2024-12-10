@@ -136,7 +136,7 @@
 						(toggleBlock
 							:active "${screenRecordStatus == "on" ? true : false}"
 							:icon "${screenRecordIcon}"
-							:label "Record"
+							:label "Rec"
 							:onclickToggle "bash scripts/screenRecord take"
 							:onclickSet "bash scripts/screenRecord set"
 						)

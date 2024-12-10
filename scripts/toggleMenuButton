@@ -1,0 +1,13 @@
+#!/bin/bash
+
+eww="eww -c $HOME/SourceCode/eww-emc-theme"
+status_file="$HOME/.cache/toggle-menu-button/status"
+status=$(cat "$status_file")
+
+if [[ $status == "open" ]]; then
+  echo "close" > "$status_file"
+  sh -c "$eww close bar & $eww open shortcuts"
+else
+  echo "open" > "$status_file"
+  sh -c "$eww open bar & $eww close shortcuts"
+fi
