@@ -1,7 +1,7 @@
 #!/bin/bash
 
 setTriggerRofi() {
-  bash ~/SourceCode/rofi-emc-theme/scripts/wifi.sh
+  bash ~/SourceCode/rofi-emc-theme/scripts/wifi
 }
 
 getConnectivity() {

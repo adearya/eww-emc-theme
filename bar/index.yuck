@@ -76,6 +76,12 @@
 
       (label :class "mount-label" :text "") 
     )
+
+    (button    
+      :onclick "killall eww && eww -c ~/SourceCode/eww-emc-theme open bar"
+
+      (label :class "mount-label" :text "") 
+    )
   )
 )
 

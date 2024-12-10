@@ -1,11 +1,11 @@
 #!/bin/bash
 
 setTriggerRofi() {
-  bash ~/SourceCode/rofi-emc-theme/scripts/screenshot.sh setting
+  bash ~/SourceCode/rofi-emc-theme/scripts/screenshot setting
 }
 
 setTakeShot() {
-  bash ~/SourceCode/rofi-emc-theme/scripts/screenshot.sh toggle
+  bash ~/SourceCode/rofi-emc-theme/scripts/screenshot toggle
 }
 
 getStatus () {
